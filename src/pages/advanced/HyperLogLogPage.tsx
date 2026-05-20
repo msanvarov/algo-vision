@@ -97,7 +97,7 @@ export function HyperLogLogPage() {
   return (
     <div>
       <PageHeader
-        eyebrow="probabilistic data structures"
+        index="probabilistic data structures"
         title="HyperLogLog"
         description={
           <>
@@ -114,9 +114,9 @@ export function HyperLogLogPage() {
           <div className="panel p-5 space-y-4">
             <div className="flex flex-wrap items-end gap-4">
               <label className="flex items-center gap-3">
-                <span className="text-xs uppercase tracking-[0.16em] text-slate-500 font-semibold">p</span>
+                <span className="text-xs uppercase tracking-[0.16em] text-ink-fade font-semibold">p</span>
                 <input type="range" min={4} max={10} value={p} onChange={(e) => setP(Number(e.target.value))} className="accent-accent w-40" />
-                <span className="font-mono text-sm text-slate-300 w-10 text-right">{p}</span>
+                <span className="font-mono text-sm text-ink-dim w-10 text-right">{p}</span>
               </label>
               <div className="chip">m = 2^{p} = {m}</div>
               <div className="chip">expected error ±{(theoreticalError * 100).toFixed(2)}%</div>
@@ -128,14 +128,14 @@ export function HyperLogLogPage() {
                 return (
                   <div
                     key={i}
-                    className="relative h-12 rounded-sm overflow-hidden bg-bg-elevated border border-bg-border"
+                    className="relative h-12 rounded-sm overflow-hidden bg-paper-raised border border-paper-line"
                     title={`reg[${i}] = ${r}`}
                   >
                     <div
-                      className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-accent to-accent-glow transition-all"
+                      className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-accent to-accent-dim transition-all"
                       style={{ height: `${heat * 100}%` }}
                     />
-                    <div className="relative h-full flex items-center justify-center font-mono text-[10px] text-slate-200">
+                    <div className="relative h-full flex items-center justify-center font-mono text-[10px] text-ink">
                       {r}
                     </div>
                   </div>
@@ -149,14 +149,14 @@ export function HyperLogLogPage() {
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && add(input)}
                 placeholder="add item..."
-                className="bg-bg-elevated border border-bg-border rounded-lg px-3 py-1.5 text-sm flex-1 min-w-[120px]"
+                className="bg-paper-raised border border-paper-line rounded-lg px-3 py-1.5 text-sm flex-1 min-w-[120px]"
               />
               <button className="btn btn-primary" onClick={() => add(input)}>Insert</button>
               <input
                 type="number"
                 value={bulkN}
                 onChange={(e) => setBulkN(Math.max(1, Number(e.target.value)))}
-                className="bg-bg-elevated border border-bg-border rounded-lg px-3 py-1.5 text-sm w-24"
+                className="bg-paper-raised border border-paper-line rounded-lg px-3 py-1.5 text-sm w-24"
               />
               <button className="btn" onClick={insertBulk}>Insert N random</button>
               <button className="btn" onClick={() => setItems(new Set())}>Reset</button>

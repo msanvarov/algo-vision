@@ -1,27 +1,28 @@
 import { NavLink, Outlet } from 'react-router-dom';
 import { clsx } from 'clsx';
 
-type NavItem = { to: string; label: string; badge?: string };
+type NavItem = { to: string; label: string; num: string };
+type NavGroup = { title: string; items: NavItem[] };
 
-const NAV_GROUPS: { title: string; items: NavItem[] }[] = [
+const NAV: NavGroup[] = [
   {
     title: 'Foundations',
     items: [
-      { to: '/sorting', label: 'Sorting' },
-      { to: '/pathfinding', label: 'Pathfinding' },
-      { to: '/graph', label: 'Graph algorithms' },
+      { num: '01', to: '/sorting', label: 'Sorting' },
+      { num: '02', to: '/pathfinding', label: 'Pathfinding' },
+      { num: '03', to: '/graph', label: 'Graph' },
     ],
   },
   {
     title: 'Advanced',
     items: [
-      { to: '/advanced/bloom', label: 'Bloom filter', badge: 'probabilistic' },
-      { to: '/advanced/hyperloglog', label: 'HyperLogLog', badge: 'cardinality' },
-      { to: '/advanced/skiplist', label: 'Skip list', badge: 'O(log n) avg' },
-      { to: '/advanced/lru', label: 'LRU cache', badge: 'O(1)' },
-      { to: '/advanced/raft', label: 'Raft consensus', badge: 'distributed' },
-      { to: '/advanced/trie', label: 'Trie', badge: 'prefix tree' },
-      { to: '/advanced/unionfind', label: 'Union-Find', badge: 'DSU' },
+      { num: '04', to: '/advanced/bloom', label: 'Bloom filter' },
+      { num: '05', to: '/advanced/hyperloglog', label: 'HyperLogLog' },
+      { num: '06', to: '/advanced/skiplist', label: 'Skip list' },
+      { num: '07', to: '/advanced/lru', label: 'LRU cache' },
+      { num: '08', to: '/advanced/raft', label: 'Raft consensus' },
+      { num: '09', to: '/advanced/trie', label: 'Trie' },
+      { num: '10', to: '/advanced/unionfind', label: 'Union-Find' },
     ],
   },
 ];
@@ -29,67 +30,65 @@ const NAV_GROUPS: { title: string; items: NavItem[] }[] = [
 export function Layout() {
   return (
     <div className="flex h-full">
-      <aside className="hidden md:flex w-64 shrink-0 flex-col border-r border-bg-border bg-bg-panel/40 backdrop-blur-sm">
-        <Brand />
-        <nav className="flex-1 overflow-y-auto scrollbar-thin px-3 py-4 space-y-6">
-          {NAV_GROUPS.map((group) => (
+      <aside className="hidden md:flex w-60 shrink-0 flex-col border-r border-paper-line">
+        <NavLink
+          to="/"
+          className="block px-6 py-7 border-b border-paper-line group"
+        >
+          <div className="font-serif text-[22px] leading-none tracking-tight text-ink">
+            Algo Vision
+          </div>
+          <div className="mt-2 text-[11px] text-ink-fade tracking-wide">
+            interactive computer science
+          </div>
+        </NavLink>
+
+        <nav className="flex-1 overflow-y-auto scrollbar-thin px-6 py-6 space-y-7">
+          {NAV.map((group) => (
             <div key={group.title}>
-              <div className="px-3 mb-2 text-[10px] uppercase tracking-[0.18em] text-slate-500 font-semibold">
-                {group.title}
-              </div>
-              <div className="space-y-0.5">
+              <div className="label mb-3">{group.title}</div>
+              <ul className="space-y-0">
                 {group.items.map((item) => (
-                  <NavLink
-                    key={item.to}
-                    to={item.to}
-                    className={({ isActive }) =>
-                      clsx('nav-link', isActive && 'nav-link-active')
-                    }
-                  >
-                    <span className="flex-1">{item.label}</span>
-                    {item.badge && <span className="chip">{item.badge}</span>}
-                  </NavLink>
+                  <li key={item.to}>
+                    <NavLink
+                      to={item.to}
+                      className={({ isActive }) =>
+                        clsx('nav-link', isActive && 'nav-link-active')
+                      }
+                    >
+                      <span className="nav-num">{item.num}</span>
+                      <span>{item.label}</span>
+                    </NavLink>
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
           ))}
         </nav>
-        <Footer />
+
+        <div className="px-6 py-5 border-t border-paper-line space-y-3">
+          <div>
+            <div className="label mb-2">Keys</div>
+            <div className="text-[11px] text-ink-fade leading-relaxed font-mono">
+              <kbd className="text-ink-dim">space</kbd> play / pause<br />
+              <kbd className="text-ink-dim">→</kbd> step<br />
+              <kbd className="text-ink-dim">r</kbd> reset
+            </div>
+          </div>
+          <a
+            href="https://www.sal-anvarov.com/"
+            target="_blank"
+            rel="noreferrer"
+            className="block font-serif italic text-[13px] text-ink-fade hover:text-accent transition-colors"
+          >
+            built by Sal &nbsp;&rarr;
+          </a>
+        </div>
       </aside>
 
       <main className="flex-1 min-w-0 overflow-y-auto scrollbar-thin">
         <Outlet />
       </main>
-    </div>
-  );
-}
-
-function Brand() {
-  return (
-    <NavLink
-      to="/"
-      className="flex items-center gap-3 px-5 py-5 border-b border-bg-border hover:bg-bg-elevated/40 transition"
-    >
-      <div className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-accent to-accent-glow shadow-[0_0_24px_rgba(124,92,255,0.5)]">
-        <svg viewBox="0 0 24 24" className="h-5 w-5 text-white" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M4 18V8" />
-          <path d="M10 18V12" />
-          <path d="M16 18V4" />
-          <path d="M22 18H2" />
-        </svg>
-      </div>
-      <div>
-        <div className="text-sm font-semibold tracking-tight text-slate-100">Algorithm Visualizer</div>
-        <div className="text-[11px] text-slate-500">step through · inspect · learn</div>
-      </div>
-    </NavLink>
-  );
-}
-
-function Footer() {
-  return (
-    <div className="px-5 py-4 border-t border-bg-border text-[11px] text-slate-500 leading-relaxed">
-      <div>Press <kbd className="px-1 py-0.5 rounded bg-bg-elevated border border-bg-border text-slate-300">Space</kbd> to play/pause, <kbd className="px-1 py-0.5 rounded bg-bg-elevated border border-bg-border text-slate-300">→</kbd> to step.</div>
     </div>
   );
 }

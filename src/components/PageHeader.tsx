@@ -1,31 +1,33 @@
 import type { ReactNode } from 'react';
 
 export function PageHeader({
-  eyebrow,
+  index,
   title,
   description,
   children,
 }: {
-  eyebrow?: string;
+  index?: string;
   title: string;
   description?: ReactNode;
   children?: ReactNode;
 }) {
   return (
-    <div className="flex flex-col gap-3 border-b border-bg-border bg-bg-panel/30 px-6 py-6">
-      <div className="flex items-start justify-between gap-4 flex-wrap">
-        <div className="space-y-1.5 max-w-3xl">
-          {eyebrow && (
-            <div className="text-[11px] uppercase tracking-[0.18em] text-accent-glow">
-              {eyebrow}
-            </div>
+    <div className="px-8 lg:px-12 pt-12 pb-8 border-b border-paper-line">
+      <div className="flex items-start justify-between gap-8 flex-wrap">
+        <div className="max-w-2xl">
+          {index && (
+            <div className="font-serif italic text-ink-fade text-[14px] mb-3">{index}</div>
           )}
-          <h1 className="text-2xl font-semibold tracking-tight text-slate-50">{title}</h1>
+          <h1 className="font-serif text-[40px] leading-[1.05] tracking-tight text-ink">
+            {title}
+          </h1>
           {description && (
-            <p className="text-sm text-slate-400 leading-relaxed">{description}</p>
+            <p className="mt-4 text-[14px] text-ink-dim leading-relaxed max-w-xl">
+              {description}
+            </p>
           )}
         </div>
-        {children}
+        {children && <div className="flex flex-col items-end gap-3">{children}</div>}
       </div>
     </div>
   );

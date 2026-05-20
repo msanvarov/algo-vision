@@ -119,13 +119,13 @@ export function UnionFindPage() {
   return (
     <div>
       <PageHeader
-        eyebrow="data structure"
+        index="data structure"
         title="Union-Find (DSU)"
         description={
           <>
             Maintains a forest where every node points up toward a representative. With
-            <span className="text-accent-glow"> path compression</span> and
-            <span className="text-accent-glow"> union by rank</span>, both operations run in nearly
+            <span className="text-accent"> path compression</span> and
+            <span className="text-accent"> union by rank</span>, both operations run in nearly
             constant amortized time — O(α(n)), where α is the inverse Ackermann function. The
             backbone of Kruskal's MST and dynamic-connectivity problems.
           </>
@@ -146,7 +146,7 @@ export function UnionFindPage() {
               value={a}
               onChange={(e) => setA(e.target.value)}
               placeholder="a"
-              className="bg-bg-elevated border border-bg-border rounded-lg px-3 py-1.5 text-sm w-20"
+              className="bg-paper-raised border border-paper-line rounded-lg px-3 py-1.5 text-sm w-20"
             />
             <input
               type="number"
@@ -155,7 +155,7 @@ export function UnionFindPage() {
               value={b}
               onChange={(e) => setB(e.target.value)}
               placeholder="b"
-              className="bg-bg-elevated border border-bg-border rounded-lg px-3 py-1.5 text-sm w-20"
+              className="bg-paper-raised border border-paper-line rounded-lg px-3 py-1.5 text-sm w-20"
             />
             <button className="btn btn-primary" onClick={submitUnion}>union(a, b)</button>
             <button className="btn" onClick={submitFind}>find(a)</button>
@@ -185,11 +185,11 @@ export function UnionFindPage() {
 
           {log.length > 0 && (
             <div className="panel p-4">
-              <div className="text-xs text-slate-500 mb-2">operation log</div>
-              <ol className="font-mono text-[12px] space-y-1 text-slate-300">
+              <div className="text-xs text-ink-fade mb-2">operation log</div>
+              <ol className="font-mono text-[12px] space-y-1 text-ink-dim">
                 {log.map((l, i) => (
                   <li key={i} className="flex gap-2">
-                    <span className="text-slate-600 w-3">{i + 1}</span>
+                    <span className="text-ink-fade w-3">{i + 1}</span>
                     <span>{l}</span>
                   </li>
                 ))}

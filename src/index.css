@@ -10,62 +10,83 @@
   }
 
   body {
-    background:
-      radial-gradient(1200px 600px at 80% -10%, rgba(124, 92, 255, 0.12), transparent 60%),
-      radial-gradient(900px 500px at 0% 0%, rgba(56, 189, 248, 0.07), transparent 60%),
-      #0a0b10;
-    background-attachment: fixed;
+    background-color: #0d0d0f;
+    font-feature-settings: 'cv11', 'ss01';
   }
 
   ::selection {
-    background: rgba(124, 92, 255, 0.4);
-    color: #fff;
+    background: rgba(201, 160, 107, 0.25);
+    color: #ffffff;
+  }
+
+  /* Calmer scrollbars — never the loudest thing on the page. */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.05) transparent;
   }
 }
 
 @layer components {
   .panel {
-    @apply rounded-2xl border border-bg-border bg-bg-panel/70 backdrop-blur-sm shadow-panel;
+    @apply border border-paper-line bg-paper-raised/40;
+  }
+
+  .rule {
+    @apply h-px w-full bg-paper-line;
+  }
+
+  .label {
+    @apply text-[10.5px] uppercase tracking-caps text-ink-fade font-medium;
   }
 
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg px-3 py-1.5 text-sm font-medium
-           border border-bg-border bg-bg-elevated text-slate-200
-           transition active:scale-[0.98]
-           hover:bg-bg-border hover:border-accent/60
-           disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-bg-elevated;
+    @apply inline-flex items-center justify-center gap-2 rounded-none border border-paper-line bg-transparent
+           px-3 py-1.5 text-[13px] text-ink-dim
+           transition hover:text-ink hover:border-paper-edge
+           disabled:opacity-30 disabled:pointer-events-none;
   }
 
   .btn-primary {
-    @apply border-accent/60 bg-accent/15 text-accent-glow hover:bg-accent/25;
-  }
-
-  .chip {
-    @apply inline-flex items-center gap-1 rounded-full border border-bg-border bg-bg-elevated/60
-           px-2 py-0.5 text-[11px] font-medium uppercase tracking-wider text-slate-400;
+    @apply text-ink border-accent/40 hover:border-accent;
   }
 
   .nav-link {
-    @apply flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-slate-400
-           hover:text-slate-100 hover:bg-bg-elevated transition;
+    @apply flex items-baseline gap-3 py-1.5 text-[13.5px] text-ink-dim
+           hover:text-ink transition;
   }
 
   .nav-link-active {
-    @apply text-accent-glow bg-accent/10 border-l-2 border-accent;
+    @apply text-ink;
+  }
+
+  .nav-num {
+    @apply font-serif text-ink-fade text-[12px] tracking-normal w-5;
+  }
+
+  .stat {
+    @apply flex flex-col gap-0.5;
+  }
+
+  .stat-label {
+    @apply text-[10.5px] uppercase tracking-caps text-ink-fade font-medium;
+  }
+
+  .stat-value {
+    @apply font-serif text-2xl text-ink leading-none;
+  }
+
+  .stat-hint {
+    @apply text-[11px] text-ink-fade font-mono;
   }
 }
 
 @layer utilities {
   .scrollbar-thin::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    width: 4px;
+    height: 4px;
   }
   .scrollbar-thin::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 3px;
-  }
-  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.06);
   }
   .scrollbar-thin::-webkit-scrollbar-track {
     background: transparent;

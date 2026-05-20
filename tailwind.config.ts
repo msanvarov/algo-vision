@@ -5,42 +5,43 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        bg: {
-          base: '#0a0b10',
-          panel: '#13151c',
-          elevated: '#1a1d27',
-          border: '#262a35',
+        // Warm, deliberately small palette. The interface should read more
+        // like a printed page than a dashboard.
+        ink: {
+          DEFAULT: '#e8e6e1',      // primary text — warm off-white
+          dim: '#9a958c',          // secondary text
+          fade: '#5e5a52',         // tertiary / labels
+          ghost: '#383530',        // very-low-contrast outlines
         },
+        paper: {
+          DEFAULT: '#0d0d0f',      // page background
+          raised: '#141417',       // panel fill (used very sparingly)
+          line: '#1f1e22',         // hairline border
+          edge: '#2a2926',         // slightly stronger border for emphasis
+        },
+        // A single signature accent. Warm sand — feels considered, not loud.
         accent: {
-          DEFAULT: '#7c5cff',
-          glow: '#a78bfa',
-          mute: '#3d2b80',
+          DEFAULT: '#c9a06b',
+          dim: '#a4845a',
+          fade: '#5b4a35',
         },
         viz: {
-          idle: '#3a3f4d',
-          active: '#fbbf24',
-          compare: '#38bdf8',
-          done: '#22c55e',
-          warn: '#f472b6',
-          path: '#a3e635',
+          idle: '#26262b',
+          active: '#d4a363',       // warm gold
+          compare: '#7e9ea2',      // muted teal
+          done: '#8aa67a',         // muted sage
+          warn: '#c47a8a',         // muted rose
+          pivot: '#b889a6',        // muted plum
+          path: '#cbb37e',         // cream
         },
       },
       fontFamily: {
         sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
+        serif: ['"Instrument Serif"', 'ui-serif', 'Georgia', 'serif'],
+        mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
       },
-      animation: {
-        'pulse-slow': 'pulse 3s ease-in-out infinite',
-        'glow': 'glow 2s ease-in-out infinite alternate',
-      },
-      keyframes: {
-        glow: {
-          '0%': { boxShadow: '0 0 8px rgba(124, 92, 255, 0.4)' },
-          '100%': { boxShadow: '0 0 24px rgba(124, 92, 255, 0.9)' },
-        },
-      },
-      boxShadow: {
-        'panel': '0 1px 0 0 rgba(255,255,255,0.04) inset, 0 0 0 1px rgba(255,255,255,0.04)',
+      letterSpacing: {
+        'caps': '0.14em',
       },
     },
   },

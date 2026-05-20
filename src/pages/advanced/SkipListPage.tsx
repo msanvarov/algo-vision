@@ -100,13 +100,13 @@ export function SkipListPage() {
   return (
     <div>
       <PageHeader
-        eyebrow="data structure"
+        index="data structure"
         title="Skip list"
         description={
           <>
             A multilevel sorted linked list. Each node is given a random height by repeated coin flips;
             search starts at the top level and drops down whenever the next pointer overshoots, giving
-            <span className="text-accent-glow"> O(log n)</span> expected behavior without the rotations
+            <span className="text-accent"> O(log n)</span> expected behavior without the rotations
             of a balanced tree. Used in Redis (sorted sets) and LevelDB.
           </>
         }
@@ -123,12 +123,12 @@ export function SkipListPage() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="search key..."
-              className="bg-bg-elevated border border-bg-border rounded-lg px-3 py-1.5 text-sm w-32"
+              className="bg-paper-raised border border-paper-line rounded-lg px-3 py-1.5 text-sm w-32"
             />
             <span className={clsx('chip', found ? 'border-viz-done text-viz-done' : 'border-viz-warn text-viz-warn')}>
               {found ? 'found' : 'absent'}
             </span>
-            <span className="font-mono text-[11px] text-slate-500">
+            <span className="font-mono text-[11px] text-ink-fade">
               steps: {traversed.length} · expected ≈ {expectedComparisons.toFixed(1)}
             </span>
 
@@ -139,7 +139,7 @@ export function SkipListPage() {
               onChange={(e) => setInsertValue(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && insert()}
               placeholder="insert key..."
-              className="bg-bg-elevated border border-bg-border rounded-lg px-3 py-1.5 text-sm w-28"
+              className="bg-paper-raised border border-paper-line rounded-lg px-3 py-1.5 text-sm w-28"
             />
             <button className="btn btn-primary" onClick={insert}>Insert</button>
             <button className="btn" onClick={() => setSeed((s) => s + 1)}>Re-roll heights</button>
@@ -154,7 +154,7 @@ export function SkipListPage() {
 
           {nodes.length > 0 && (
             <div className="panel p-4">
-              <div className="text-xs text-slate-500 mb-2">keys (click to remove)</div>
+              <div className="text-xs text-ink-fade mb-2">keys (click to remove)</div>
               <div className="flex flex-wrap gap-1.5">
                 {keys.slice().sort((a, b) => a - b).map((k) => (
                   <button key={k} onClick={() => remove(k)} className="chip hover:border-viz-warn hover:text-viz-warn">

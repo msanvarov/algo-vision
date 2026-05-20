@@ -235,7 +235,7 @@ export function RaftPage() {
   return (
     <div>
       <PageHeader
-        eyebrow="distributed systems"
+        index="distributed systems"
         title="Raft consensus — leader election"
         description={
           <>
@@ -268,11 +268,11 @@ export function RaftPage() {
 
           {log.length > 0 && (
             <div className="panel p-4">
-              <div className="text-xs text-slate-500 mb-2">cluster log</div>
-              <ol className="font-mono text-[12px] space-y-1 text-slate-300">
+              <div className="text-xs text-ink-fade mb-2">cluster log</div>
+              <ol className="font-mono text-[12px] space-y-1 text-ink-dim">
                 {log.map((l, i) => (
                   <li key={i} className="flex gap-2">
-                    <span className="text-slate-600 w-3">{i + 1}</span>
+                    <span className="text-ink-fade w-3">{i + 1}</span>
                     <span>{l}</span>
                   </li>
                 ))}

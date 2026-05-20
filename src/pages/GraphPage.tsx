@@ -28,17 +28,17 @@ export function GraphPage() {
   return (
     <div>
       <PageHeader
-        eyebrow="foundations"
+        index="foundations"
         title="Graph algorithms"
         description={cfg.blurb}
       >
         <div className="flex flex-wrap gap-3 items-end">
           <div>
-            <label className="block text-[10px] uppercase tracking-[0.16em] text-slate-500 font-semibold mb-1">Algorithm</label>
+            <label className="block text-[10px] uppercase tracking-[0.16em] text-ink-fade font-semibold mb-1">Algorithm</label>
             <select
               value={algo}
               onChange={(e) => setAlgo(e.target.value as GraphKey)}
-              className="bg-bg-elevated border border-bg-border rounded-lg px-3 py-1.5 text-sm text-slate-100"
+              className="bg-paper-raised border border-paper-line rounded-lg px-3 py-1.5 text-sm text-ink"
             >
               {(Object.keys(GRAPHS) as GraphKey[]).map((k) => (
                 <option key={k} value={k}>{GRAPHS[k].name}</option>
@@ -55,7 +55,7 @@ export function GraphPage() {
         <div className="xl:col-span-2 space-y-4">
           <div className="panel p-4">
             <GraphCanvas input={input} state={stepper.state} />
-            <div className="px-2 pt-1 text-[12px] font-mono text-slate-400">
+            <div className="px-2 pt-1 text-[12px] font-mono text-ink-dim">
               {stepper.state.note}
             </div>
           </div>
@@ -85,7 +85,7 @@ function GraphCanvas({ input, state }: { input: GraphInput; state: GraphState })
           <path d="M0,0 L10,5 L0,10 z" className="fill-slate-400" />
         </marker>
         <marker id="arrow-hl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
-          <path d="M0,0 L10,5 L0,10 z" className="fill-accent-glow" />
+          <path d="M0,0 L10,5 L0,10 z" className="fill-accent" />
         </marker>
       </defs>
 

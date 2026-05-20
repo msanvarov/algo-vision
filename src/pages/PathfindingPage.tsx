@@ -64,17 +64,17 @@ export function PathfindingPage() {
   return (
     <div>
       <PageHeader
-        eyebrow="foundations"
+        index="foundations"
         title="Pathfinding"
         description="Click cells to draw walls, drag the start/end with the toolbox, switch weighted/unweighted to see how each algorithm responds. The frontier is what each algorithm is about to look at next."
       >
         <div className="flex flex-wrap gap-3 items-end">
           <div>
-            <label className="block text-[10px] uppercase tracking-[0.16em] text-slate-500 font-semibold mb-1">Algorithm</label>
+            <label className="block text-[10px] uppercase tracking-[0.16em] text-ink-fade font-semibold mb-1">Algorithm</label>
             <select
               value={algo}
               onChange={(e) => setAlgo(e.target.value as PathKey)}
-              className="bg-bg-elevated border border-bg-border rounded-lg px-3 py-1.5 text-sm text-slate-100"
+              className="bg-paper-raised border border-paper-line rounded-lg px-3 py-1.5 text-sm text-ink"
             >
               {(Object.keys(PATHFINDERS) as PathKey[]).map((k) => (
                 <option key={k} value={k}>{PATHFINDERS[k].name}</option>
@@ -151,7 +151,7 @@ export function PathfindingPage() {
                         !isStart && !isEnd && !isWall && !isPath && isFrontier && 'bg-accent/60',
                         !isStart && !isEnd && !isWall && !isPath && !isFrontier && isVisited && 'bg-viz-compare/40',
                         !isStart && !isEnd && !isWall && !isPath && !isFrontier && !isVisited && w > 1 && 'bg-amber-900/40',
-                        !isStart && !isEnd && !isWall && !isPath && !isFrontier && !isVisited && w === 1 && 'bg-bg-elevated/40 hover:bg-bg-border',
+                        !isStart && !isEnd && !isWall && !isPath && !isFrontier && !isVisited && w === 1 && 'bg-paper-raised/40 hover:bg-paper-line',
                       )}
                       title={w > 1 ? `weight ${w}` : undefined}
                     />
@@ -170,7 +170,7 @@ export function PathfindingPage() {
                 { color: '#a3e635', label: 'shortest path' },
               ]}
             />
-            <div className="px-2 pt-1 text-[12px] font-mono text-slate-500">{finder.note}</div>
+            <div className="px-2 pt-1 text-[12px] font-mono text-ink-fade">{finder.note}</div>
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">

@@ -59,7 +59,7 @@ export function BloomPage() {
   return (
     <div>
       <PageHeader
-        eyebrow="probabilistic data structures"
+        index="probabilistic data structures"
         title="Bloom filter"
         description={
           <>
@@ -88,7 +88,7 @@ export function BloomPage() {
                     key={i}
                     className={clsx(
                       'aspect-square rounded text-[10px] font-mono flex items-center justify-center transition-all duration-300',
-                      b ? 'bg-accent text-white' : 'bg-bg-elevated text-slate-600',
+                      b ? 'bg-accent text-white' : 'bg-paper-raised text-ink-fade',
                       justAdded && 'ring-2 ring-viz-active scale-110 shadow-[0_0_12px_rgba(251,191,36,0.7)]',
                       inQuery && !justAdded && (b ? 'ring-2 ring-viz-done' : 'ring-2 ring-viz-warn'),
                     )}
@@ -100,13 +100,13 @@ export function BloomPage() {
               })}
             </div>
 
-            <div className="flex flex-wrap gap-2 pt-2 border-t border-bg-border">
+            <div className="flex flex-wrap gap-2 pt-2 border-t border-paper-line">
               <input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && add()}
                 placeholder="add item..."
-                className="bg-bg-elevated border border-bg-border rounded-lg px-3 py-1.5 text-sm flex-1 min-w-[120px]"
+                className="bg-paper-raised border border-paper-line rounded-lg px-3 py-1.5 text-sm flex-1 min-w-[120px]"
               />
               <button className="btn btn-primary" onClick={add}>Insert</button>
               <button
@@ -125,12 +125,12 @@ export function BloomPage() {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="query item..."
-                className="bg-bg-elevated border border-bg-border rounded-lg px-3 py-1.5 text-sm flex-1 min-w-[120px]"
+                className="bg-paper-raised border border-paper-line rounded-lg px-3 py-1.5 text-sm flex-1 min-w-[120px]"
               />
               <div
                 className={clsx(
                   'btn pointer-events-none',
-                  queryHit ? (queryMember ? 'border-viz-done text-viz-done' : 'border-viz-warn text-viz-warn') : 'border-slate-500 text-slate-400',
+                  queryHit ? (queryMember ? 'border-viz-done text-viz-done' : 'border-viz-warn text-viz-warn') : 'border-slate-500 text-ink-dim',
                 )}
               >
                 {queryHit
@@ -141,8 +141,8 @@ export function BloomPage() {
               </div>
             </div>
 
-            <div className="text-[11px] font-mono text-slate-500">
-              hashes(<span className="text-accent-glow">{query || '∅'}</span>) → [{queryHashes.join(', ')}]
+            <div className="text-[11px] font-mono text-ink-fade">
+              hashes(<span className="text-accent">{query || '∅'}</span>) → [{queryHashes.join(', ')}]
             </div>
           </div>
 
@@ -155,10 +155,10 @@ export function BloomPage() {
 
           {items.length > 0 && (
             <div className="panel p-4">
-              <div className="text-xs text-slate-500 mb-2">items in the set</div>
+              <div className="text-xs text-ink-fade mb-2">items in the set</div>
               <div className="flex flex-wrap gap-1.5">
                 {items.map((it) => (
-                  <span key={it} className="chip text-slate-300 normal-case tracking-normal">{it}</span>
+                  <span key={it} className="chip text-ink-dim normal-case tracking-normal">{it}</span>
                 ))}
               </div>
             </div>
@@ -188,7 +188,7 @@ function ParamSlider({
 }) {
   return (
     <div className="flex items-center gap-3">
-      <label className="text-xs uppercase tracking-[0.16em] text-slate-500 font-semibold">{label}</label>
+      <label className="text-xs uppercase tracking-[0.16em] text-ink-fade font-semibold">{label}</label>
       <input
         type="range"
         min={min}
@@ -198,7 +198,7 @@ function ParamSlider({
         onChange={(e) => onChange(Number(e.target.value))}
         className="accent-accent w-40"
       />
-      <span className="font-mono text-sm text-slate-300 w-10 text-right">{value}</span>
+      <span className="font-mono text-sm text-ink-dim w-10 text-right">{value}</span>
     </div>
   );
 }

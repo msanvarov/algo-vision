@@ -140,12 +140,12 @@ export function TriePage() {
   return (
     <div>
       <PageHeader
-        eyebrow="data structure"
+        index="data structure"
         title="Trie (prefix tree)"
         description={
           <>
             Stores strings by sharing their common prefixes. Search and insert run in
-            <span className="text-accent-glow"> O(|key|)</span>, independent of how many strings are
+            <span className="text-accent"> O(|key|)</span>, independent of how many strings are
             stored. Prefix queries take just as long, which makes tries the workhorse of autocomplete,
             IP routing tables, and dictionaries.
           </>
@@ -164,7 +164,7 @@ export function TriePage() {
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && add(input)}
               placeholder="insert word..."
-              className="bg-bg-elevated border border-bg-border rounded-lg px-3 py-1.5 text-sm w-44"
+              className="bg-paper-raised border border-paper-line rounded-lg px-3 py-1.5 text-sm w-44"
             />
             <button className="btn btn-primary" onClick={() => add(input)}>Insert</button>
             <button className="btn" onClick={() => setRoot(newRoot())}>Clear</button>
@@ -175,18 +175,18 @@ export function TriePage() {
               value={prefix}
               onChange={(e) => setPrefix(e.target.value.toLowerCase())}
               placeholder="autocomplete prefix..."
-              className="bg-bg-elevated border border-bg-border rounded-lg px-3 py-1.5 text-sm w-44"
+              className="bg-paper-raised border border-paper-line rounded-lg px-3 py-1.5 text-sm w-44"
             />
             <span className="chip">{matches.length} matches</span>
           </div>
 
           {matches.length > 0 && (
             <div className="panel p-4">
-              <div className="text-xs text-slate-500 mb-2">words with prefix "{prefix}"</div>
+              <div className="text-xs text-ink-fade mb-2">words with prefix "{prefix}"</div>
               <div className="flex flex-wrap gap-1.5">
                 {matches.map((m) => (
-                  <span key={m} className="chip text-slate-200 normal-case tracking-normal">
-                    <span className="text-accent-glow">{prefix}</span>{m.slice(prefix.length)}
+                  <span key={m} className="chip text-ink normal-case tracking-normal">
+                    <span className="text-accent">{prefix}</span>{m.slice(prefix.length)}
                   </span>
                 ))}
               </div>

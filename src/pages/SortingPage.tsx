@@ -26,17 +26,17 @@ export function SortingPage() {
   return (
     <div>
       <PageHeader
-        eyebrow="foundations"
+        index="foundations"
         title="Sorting"
         description="Watch comparisons, swaps, and partitions for four classic sorts on the same input. Each algorithm exposes the same step interface so the controls below work the same everywhere."
       >
         <div className="flex flex-wrap gap-3 items-end">
           <div>
-            <label className="block text-[10px] uppercase tracking-[0.16em] text-slate-500 font-semibold mb-1">Algorithm</label>
+            <label className="block text-[10px] uppercase tracking-[0.16em] text-ink-fade font-semibold mb-1">Algorithm</label>
             <select
               value={algo}
               onChange={(e) => setAlgo(e.target.value as SortKey)}
-              className="bg-bg-elevated border border-bg-border rounded-lg px-3 py-1.5 text-sm text-slate-100"
+              className="bg-paper-raised border border-paper-line rounded-lg px-3 py-1.5 text-sm text-ink"
             >
               {(Object.keys(SORTERS) as SortKey[]).map((k) => (
                 <option key={k} value={k}>{SORTERS[k].name}</option>
@@ -44,14 +44,14 @@ export function SortingPage() {
             </select>
           </div>
           <div>
-            <label className="block text-[10px] uppercase tracking-[0.16em] text-slate-500 font-semibold mb-1">Size</label>
+            <label className="block text-[10px] uppercase tracking-[0.16em] text-ink-fade font-semibold mb-1">Size</label>
             <input
               type="number"
               value={size}
               min={4}
               max={128}
               onChange={(e) => setSize(Math.max(4, Math.min(128, Number(e.target.value))))}
-              className="bg-bg-elevated border border-bg-border rounded-lg px-3 py-1.5 text-sm text-slate-100 w-20"
+              className="bg-paper-raised border border-paper-line rounded-lg px-3 py-1.5 text-sm text-ink w-20"
             />
           </div>
           <div className="chip">{sorter.complexity}</div>
@@ -75,7 +75,7 @@ export function SortingPage() {
               ]}
             />
             {stepper.state.note && (
-              <div className="px-2 pt-1 text-[12px] font-mono text-slate-400">
+              <div className="px-2 pt-1 text-[12px] font-mono text-ink-dim">
                 {stepper.state.note}
               </div>
             )}

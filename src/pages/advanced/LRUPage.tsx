@@ -94,26 +94,26 @@ export function LRUPage() {
   return (
     <div>
       <PageHeader
-        eyebrow="data structure"
+        index="data structure"
         title="LRU cache"
         description={
           <>
-            Bounded cache with <span className="text-accent-glow">O(1)</span> get and put. Backed by a
+            Bounded cache with <span className="text-accent">O(1)</span> get and put. Backed by a
             doubly linked list (recency order) and a hash map (random access). On access, the entry
-            jumps to the tail; on overflow, the head is evicted. JavaScript's <code className="font-mono text-accent-glow">Map</code> already
+            jumps to the tail; on overflow, the head is evicted. JavaScript's <code className="font-mono text-accent">Map</code> already
             tracks insertion order, so a delete-and-reinsert is enough.
           </>
         }
       >
         <div className="flex items-center gap-3">
-          <label className="text-[10px] uppercase tracking-[0.16em] text-slate-500 font-semibold">Capacity</label>
+          <label className="text-[10px] uppercase tracking-[0.16em] text-ink-fade font-semibold">Capacity</label>
           <input
             type="number"
             min={1}
             max={12}
             value={cap}
             onChange={(e) => setCapSafe(Math.max(1, Math.min(12, Number(e.target.value))))}
-            className="bg-bg-elevated border border-bg-border rounded-lg px-3 py-1.5 text-sm w-20"
+            className="bg-paper-raised border border-paper-line rounded-lg px-3 py-1.5 text-sm w-20"
           />
         </div>
       </PageHeader>
@@ -121,13 +121,13 @@ export function LRUPage() {
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-4 p-4">
         <div className="xl:col-span-2 space-y-4">
           <div className="panel p-6 overflow-x-auto">
-            <div className="flex items-center justify-between mb-3 text-[11px] uppercase tracking-[0.16em] text-slate-500">
+            <div className="flex items-center justify-between mb-3 text-[11px] uppercase tracking-[0.16em] text-ink-fade">
               <span>LRU (next to evict)</span>
               <span>MRU (just used)</span>
             </div>
             <div className="flex items-center gap-2 min-w-min">
               {entries.length === 0 && (
-                <div className="text-sm text-slate-500 italic">empty</div>
+                <div className="text-sm text-ink-fade italic">empty</div>
               )}
               {entries.map((e, i) => {
                 const isFlash = flash?.key === e.key;
@@ -140,21 +140,21 @@ export function LRUPage() {
                         isFlash && flash.kind === 'bump' && 'border-viz-active shadow-[0_0_16px_rgba(251,191,36,0.6)] scale-105',
                         !isFlash && i === 0 && 'border-viz-warn/60',
                         !isFlash && i === entries.length - 1 && 'border-accent/60',
-                        !isFlash && i !== 0 && i !== entries.length - 1 && 'border-bg-border',
-                        'bg-bg-elevated',
+                        !isFlash && i !== 0 && i !== entries.length - 1 && 'border-paper-line',
+                        'bg-paper-raised',
                       )}
                     >
-                      <div className="text-[10px] uppercase tracking-wider text-slate-500">{e.key}</div>
-                      <div className="font-mono text-sm text-slate-100">{e.value}</div>
+                      <div className="text-[10px] uppercase tracking-wider text-ink-fade">{e.key}</div>
+                      <div className="font-mono text-sm text-ink">{e.value}</div>
                     </div>
-                    {i < entries.length - 1 && <span className="text-slate-600">→</span>}
+                    {i < entries.length - 1 && <span className="text-ink-fade">→</span>}
                   </div>
                 );
               })}
               {Array.from({ length: cap - entries.length }).map((_, i) => (
                 <div
                   key={`slot-${i}`}
-                  className="min-w-[80px] px-3 py-3 rounded-lg border-2 border-dashed border-bg-border bg-bg-elevated/30 text-center text-[11px] text-slate-600"
+                  className="min-w-[80px] px-3 py-3 rounded-lg border-2 border-dashed border-paper-line bg-paper-raised/30 text-center text-[11px] text-ink-fade"
                 >
                   empty
                 </div>
@@ -167,14 +167,14 @@ export function LRUPage() {
               value={key}
               onChange={(e) => setKey(e.target.value)}
               placeholder="key"
-              className="bg-bg-elevated border border-bg-border rounded-lg px-3 py-1.5 text-sm w-28"
+              className="bg-paper-raised border border-paper-line rounded-lg px-3 py-1.5 text-sm w-28"
             />
             <input
               value={value}
               onChange={(e) => setValue(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && submitPut()}
               placeholder="value"
-              className="bg-bg-elevated border border-bg-border rounded-lg px-3 py-1.5 text-sm w-28"
+              className="bg-paper-raised border border-paper-line rounded-lg px-3 py-1.5 text-sm w-28"
             />
             <button className="btn btn-primary" onClick={submitPut}>put</button>
             <button className="btn" onClick={() => get(key.trim())}>get</button>
@@ -210,24 +210,24 @@ export function LRUPage() {
 
           {log.length > 0 && (
             <div className="panel p-4">
-              <div className="text-xs text-slate-500 mb-2">operation log</div>
+              <div className="text-xs text-ink-fade mb-2">operation log</div>
               <ol className="font-mono text-[12px] space-y-1">
                 {log.map((l, i) => (
                   <li key={i} className="flex gap-2">
-                    <span className="text-slate-600 w-3">{i + 1}</span>
+                    <span className="text-ink-fade w-3">{i + 1}</span>
                     <span
                       className={clsx(
                         'w-12',
-                        l.op === 'put' && 'text-accent-glow',
+                        l.op === 'put' && 'text-accent',
                         l.op === 'get' && (l.result === 'hit' ? 'text-viz-done' : 'text-viz-warn'),
                         l.op === 'evict' && 'text-viz-warn',
                       )}
                     >
                       {l.op}
                     </span>
-                    <span className="text-slate-200">{l.key}</span>
-                    {l.value && <span className="text-slate-500">= {l.value}</span>}
-                    {l.result && <span className="text-slate-500 ml-auto">{l.result}</span>}
+                    <span className="text-ink">{l.key}</span>
+                    {l.value && <span className="text-ink-fade">= {l.value}</span>}
+                    {l.result && <span className="text-ink-fade ml-auto">{l.result}</span>}
                   </li>
                 ))}
               </ol>

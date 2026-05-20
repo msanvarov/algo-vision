@@ -9,20 +9,47 @@ const NAV: NavGroup[] = [
     title: 'Foundations',
     items: [
       { num: '01', to: '/sorting', label: 'Sorting' },
-      { num: '02', to: '/pathfinding', label: 'Pathfinding' },
-      { num: '03', to: '/graph', label: 'Graph' },
+      { num: '02', to: '/searching', label: 'Searching' },
+      { num: '03', to: '/pathfinding', label: 'Pathfinding' },
+      { num: '04', to: '/graph', label: 'Graph' },
+      { num: '05', to: '/dp', label: 'Dynamic programming' },
     ],
   },
   {
-    title: 'Advanced',
+    title: 'Data structures',
     items: [
-      { num: '04', to: '/advanced/bloom', label: 'Bloom filter' },
-      { num: '05', to: '/advanced/hyperloglog', label: 'HyperLogLog' },
-      { num: '06', to: '/advanced/skiplist', label: 'Skip list' },
-      { num: '07', to: '/advanced/lru', label: 'LRU cache' },
-      { num: '08', to: '/advanced/raft', label: 'Raft consensus' },
-      { num: '09', to: '/advanced/trie', label: 'Trie' },
-      { num: '10', to: '/advanced/unionfind', label: 'Union-Find' },
+      { num: '06', to: '/advanced/bloom', label: 'Bloom filter' },
+      { num: '07', to: '/advanced/hyperloglog', label: 'HyperLogLog' },
+      { num: '08', to: '/advanced/skiplist', label: 'Skip list' },
+      { num: '09', to: '/advanced/lru', label: 'LRU cache' },
+      { num: '10', to: '/advanced/trie', label: 'Trie' },
+      { num: '11', to: '/advanced/unionfind', label: 'Union-Find' },
+    ],
+  },
+  {
+    title: 'Algorithms',
+    items: [
+      { num: '12', to: '/advanced/nqueens', label: 'N-Queens' },
+      { num: '13', to: '/advanced/maze', label: 'Maze generation' },
+      { num: '14', to: '/advanced/convex-hull', label: 'Convex hull' },
+      { num: '15', to: '/advanced/game-of-life', label: 'Game of Life' },
+    ],
+  },
+  {
+    title: 'Distributed',
+    items: [
+      { num: '16', to: '/advanced/raft', label: 'Raft consensus' },
+      { num: '17', to: '/distributed/dht', label: 'DHTs' },
+      { num: '18', to: '/distributed/blockdag', label: 'BlockDAG' },
+    ],
+  },
+  {
+    title: 'AI & quantum',
+    items: [
+      { num: '19', to: '/ai/embeddings', label: 'Embeddings' },
+      { num: '20', to: '/ai/attention', label: 'Attention map' },
+      { num: '21', to: '/ai/multi-agent', label: 'Multi-agent flow' },
+      { num: '22', to: '/ai/bloch', label: 'Bloch sphere' },
     ],
   },
 ];

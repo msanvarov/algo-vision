@@ -28,9 +28,12 @@ export function SearchingPage() {
   const array = useMemo(() => sortedArray(size, seed), [size, seed]);
   const cfg = SEARCHES[algo];
 
+  // Must be a stable reference: useStepper keys its frame cache on input identity.
+  const input = useMemo(() => ({ array, target }), [array, target]);
+
   const stepper = useStepper({
     runner: cfg.algo,
-    input: { array, target },
+    input,
     initial: { array, target, range: [0, array.length - 1] as [number, number], visited: [] as number[] },
   });
 
